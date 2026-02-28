@@ -1,73 +1,37 @@
-# React + TypeScript + Vite
+# ⚔️ Clash Builder
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+シンプルな「防衛配置 & 攻撃シミュレーション」ゲームです。  
+砲台やウィザード塔・壁で防衛を組み、戦士やジャイアントを配置して破壊率 100% を目指します。
 
-Currently, two official plugins are available:
+## 🎮 ゲーム概要
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **防衛フェーズ**
+  - グリッド上に本拠地🏰・砲台💣・アーチャー塔🏹・ウィザード塔🔮・迫撃砲🎯・壁🧱などを配置
+  - それぞれコスト/HP/射程/範囲攻撃などの特徴あり
+- **攻撃フェーズ**
+  - マップ外周に戦士⚔️・重装戦士🛡️・アーチャー🎯・ジャイアント👹・ウィザード🧙を配置
+  - ユニットごとに HP / 攻撃力 / 射程 / 移動速度 / 範囲攻撃 / 防衛施設優先 などの違い
+- **戦闘フェーズ**
+  - ユニットは自動で最適なターゲットに向かって移動・攻撃
+  - 防衛側は射程・死角・範囲攻撃を使って迎撃
+  - 破壊率に応じて ⭐〜⭐⭐⭐ を評価表示
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🛠 使用技術
 
-## Expanding the ESLint configuration
+- React + TypeScript
+- Vite
+- CSS（シンプルな UI スタイル）
+- Docker + Nginx（本番用ビルドの配信）
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 💻 ローカルで起動する
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+```bash
+# 依存インストール
+npm install
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+# 開発サーバー起動
+npm run dev
